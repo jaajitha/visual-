@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Die With a Smile - Visual</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(-45deg, #ff6ec4, #7873f5, #42e695, #fad0c4);
+      background-size: 400% 400%;
+      animation: gradient 12s ease infinite;
+      color: white;
+      overflow: hidden;
+    }
+
+    @keyframes gradient {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .lyrics {
+      font-size: 2em;
+      line-height: 1.8;
+      max-width: 800px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      animation: glow 2s ease-in-out infinite alternate;
+      white-space: pre-line;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #ff99ff;
+      }
+      to {
+        text-shadow: 0 0 20px #66ffff, 0 0 30px #66ffff;
+      }
+    }
+
+    .heart {
+      position: absolute;
+      top: -50px;
+      font-size: 2em;
+      color: #ff69b4;
+      animation: float 10s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+    audio {
+      position: absolute;
+      bottom: 20px;
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div class="lyrics">
+    I wanna hold you, just for a while,<br>
+    and die with a smile.<br>
+    If the world was ending,<br>
+    I'd wanna be next to you.
+  </div>
+
+  <!-- Optional: Add your own audio file -->
+  <audio controls autoplay>
+    <source src="your_audio.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Animated Hearts -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+      heart.style.animationDelay = Math.random() * 5 + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 10000); // Remove heart after animation completes
+    }
+
+    setInterval(createHeart, 300); // Create a new heart every 300ms
+  </script>
+</body>
+</html>
